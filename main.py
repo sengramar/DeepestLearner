@@ -14,7 +14,7 @@ y = int((screen_height/2) - (app_height/2))
 window.geometry(f'{app_width}x{app_height}+{x}+{y}')
 window.title("Marine Garbage Classifier")
 
-img = Image.open("C:/Users/hyuny/OneDrive/Desktop/42028 Deep learning and Convolutional neural network/Assignment3/GUI/image1.jpg")
+img = Image.open("/Users/jiwonyou/Desktop/DL_CNN/A3/Clone/DeepestLearner/image1.jpg")
 resized = img.resize((520, 350))
 pic = ImageTk.PhotoImage(resized)
 lab = Label(image=pic)

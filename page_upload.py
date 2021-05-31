@@ -2,6 +2,7 @@ from tkinter import *
 import tkinter as tk
 from PIL import Image, ImageTk
 import cv2
+from tkinter import filedialog
 
 window = Tk()
 app_width = 1000
@@ -42,6 +43,17 @@ def wd_video():
 def wd_picture():
     window.destroy()
     import page_picture
+
+
+def open_file():
+    global img
+    l_frame.filename = filedialog.askopenfilename(title="upload file")
+    lab = Label(l_frame, text=l_frame.filename).pack()
+    img = ImageTk.PhotoImage(Image.open(l_frame.filename))
+    img_lab = Label(l_frame, image=img).pack()
+
+
+btn_open = Button(l_frame, text='UPLOAD FILE', command=open_file).pack()
 
 
 button_pic = Button(window, text="LIVE PICTURE", fg='white', bg='light sky blue', relief=RIDGE,

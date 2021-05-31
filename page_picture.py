@@ -66,6 +66,5 @@ button_home = Button(window, text=u'\u2302', font=('arial', 15, 'bold'), bg='lig
 button_exit = Button(window, text="X", font=('arial', 14, 'bold'), bg='light sky blue',
                      command=exit1).place(x=960, y=450)
 
-# btn_take_pic =
 
 window.mainloop()
