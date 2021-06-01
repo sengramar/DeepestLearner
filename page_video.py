@@ -17,13 +17,19 @@ window.geometry(f'{app_width}x{app_height}+{x}+{y}')
 window.configure(bg='steel blue')
 window.title("Marine Garbage Classifier")
 
-
 l_frame = tk.Frame(window, width=450, height=450, bg='white')
 l_frame.place(x=30, y=40)
+lmain = Label(l_frame)
+lmain.pack()
 
 r_frame = tk.Frame(window, width=450, height=450, bg='white')
 r_frame.place(x=500, y=40)
 
+#Camera frame work
+width, height = 300, 300
+cap = cv2.VideoCapture(0)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
 
 def exit1():
     exit()
@@ -43,10 +49,19 @@ def wd_upload():
     window.destroy()
     import page_upload
 
+#webcam connect 
+def show_frame():
+    _, frame = cap.read()
+    frame = cv2.flip(frame, 1)
+    cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+    img = Image.fromarray(cv2image)
+    img = ImageTk.PhotoImage(image=img)
+    lmain.img = img
+    lmain.configure(image=img)
+    lmain.after(10, show_frame)
 
-button_pic = Button(window, text="LIVE PICTURE", fg='white', bg='light sky blue', relief=RIDGE,
-                    font=('arial', 12, 'bold'), command=wd_picture)
-button_pic.place(x=0, y=0)
+show_frame()
+
 
 
 button_video = Button(window, text='LIVE VIDEO', fg='white', bg='steel blue', relief='flat',
