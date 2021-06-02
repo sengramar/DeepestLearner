@@ -159,10 +159,15 @@ label_result.place(x=675, y=0)
 result = Label(r_frame,text='Take a Photo of Image before prediction',font=('arial',15,'bold'))
 result.place(relx = 0.5, rely = 0.5, anchor=CENTER)
 
-button_home = Button(window, text=u'\u2302', font=('arial', 15, 'bold'), bg='light sky blue',
-                    command=wd_main).place(anchor=NE,bordermode=OUTSIDE,height=15,width=15)
-button_exit = Button(window, text="X", font=('arial', 14, 'bold'), bg='light sky blue',
-                     command=exit1).place(anchor=SE,bordermode=OUTSIDE,height=15,width=15)
+rightFrame = Frame(window)
+rightFrame.pack(side=RIGHT, anchor=N)
+rightFrame.configure(bg='light sky blue')
 
+button_home = Button(rightFrame, text=u'\u2302', font=('arial', 15, 'bold'), bg='light sky blue',
+                    command=wd_main,height = 25, width = 25)
+button_home.grid(column=1, row = 0, padx=5,pady=5)
+button_exit = Button(rightFrame, text="X", font=('arial', 14, 'bold'), bg='light sky blue',
+                     command=exit1,height = 25, width = 25)
+button_exit.grid(column=2, row = 0, padx=5,pady=5)
 
 window.mainloop()
