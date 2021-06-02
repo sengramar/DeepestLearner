@@ -102,7 +102,7 @@ def showtakenpic():
     lmain2.pack()
     btn_refresh = Button(l_frame,text="Retake photo",width=50,command=refresh)
     btn_refresh.pack(anchor=CENTER, expand=True)
-    btn_process = Button(l_frame,text='Predict', command=predict).pack()
+    btn_process = Button(l_frame,text='Predict', width=50, command=predict).pack()
     img_path = "/Users/jiwonyou/Desktop/DL_CNN/A3/Clone/DeepestLearner/frame.jpeg"
     
 def refresh():
