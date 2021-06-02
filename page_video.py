@@ -86,14 +86,17 @@ label_result = Label(window, text="RESULT", fg="white", bg='steel blue', relief=
                      font=("arial", 16, "bold"))
 label_result.place(x=675, y=0)
 
+result = Label(r_frame,text='Live video detection will be upcomming soon',font=('arial',15,'bold'))
+result.place(relx = 0.5, rely = 0.5, anchor=CENTER)
+
 rightFrame = Frame(window)
 rightFrame.pack(side=RIGHT, anchor=N)
-rightFrame.configure(bg='light slate blue')
+rightFrame.configure(bg='steel blue')
 
-button_home = Button(rightFrame, text=u'\u2302', font=('arial', 15, 'bold'), bg='light slate blue',
+button_home = Button(rightFrame, text=u'\u2302', font=('arial', 15, 'bold'), bg='steel blue',
                     command=wd_main,height = 25, width = 25)
 button_home.grid(column=1, row = 0, padx=5,pady=5)
-button_exit = Button(rightFrame, text="X", font=('arial', 14, 'bold'), bg='light slate blue',
+button_exit = Button(rightFrame, text="X", font=('arial', 14, 'bold'), bg='steel blue',
                      command=exit1,height = 25, width = 25)
 button_exit.grid(column=2, row = 0, padx=5,pady=5)
 
