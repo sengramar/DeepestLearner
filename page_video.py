@@ -86,7 +86,7 @@ label_result = Label(window, text="RESULT", fg="white", bg='steel blue', relief=
                      font=("arial", 16, "bold"))
 label_result.place(x=675, y=0)
 
-ightFrame = Frame(window)
+rightFrame = Frame(window)
 rightFrame.pack(side=RIGHT, anchor=N)
 rightFrame.configure(bg='light slate blue')
 
