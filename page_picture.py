@@ -17,7 +17,7 @@ loaded_model_json = json_file.read()
 json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 # load weights into new model
-loaded_model.load_weights("model.h5")
+loaded_model.load_weights("saved_model.h5")
 print("Loaded model from disk")
 
 optimizer = optimizers.SGD(lr=0.0001, momentum=0.9, nesterov=True)
@@ -118,7 +118,6 @@ def predict():
     img_batch = np.expand_dims(img_array, axis=0)
     img_ppd = preprocess_input(img_batch)
     prediction = loaded_model.predict(img_ppd)
-    print("{:.2%}".format(prediction[0][0]))
     resulttext = "Cardbaord: " + "{:.2%}".format(prediction[0][0]) + "\n" + "Glass: " + "{:.2%}".format(prediction[0][1]) + "\n" + "Metal: " + "{:.2%}".format(prediction[0][2]) + "\n" + "Paper: " + "{:.2%}".format(prediction[0][3]) + "\n" + "Plastic: " + "{:.2%}".format(prediction[0][4]) + "\n" + "Trash: " + "{:.2%}".format(prediction[0][5])
     result.configure(text=resulttext)
     
@@ -136,7 +135,7 @@ updateframe()
 
 
 #Snapshot button
-btn_snapshot=Button(l_frame, text="Snapshot", width=50, command=snapshot)
+btn_snapshot=Button(l_frame, text="Snapshot", command=snapshot)
 btn_snapshot.pack(side=BOTTOM, expand=True, fill=X)
 
 button_pic = Button(window, text="LIVE PICTURE", fg='white', bg='light sky blue', relief=RIDGE,
@@ -161,9 +160,9 @@ result = Label(r_frame,text='Take a Photo of Image before prediction',font=('ari
 result.place(relx = 0.5, rely = 0.5, anchor=CENTER)
 
 button_home = Button(window, text=u'\u2302', font=('arial', 15, 'bold'), bg='light sky blue',
-                    command=wd_main).place(x=960, y=0)
+                    command=wd_main).place(anchor=NE,bordermode=OUTSIDE,height=15,width=15)
 button_exit = Button(window, text="X", font=('arial', 14, 'bold'), bg='light sky blue',
-                     command=exit1).place(x=960, y=450)
+                     command=exit1).place(anchor=SE,bordermode=OUTSIDE,height=15,width=15)
 
 
 window.mainloop()

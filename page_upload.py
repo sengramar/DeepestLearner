@@ -17,7 +17,7 @@ loaded_model_json = json_file.read()
 json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 # load weights into new model
-loaded_model.load_weights("model.h5")
+loaded_model.load_weights("saved_model.h5")
 print("Loaded model from disk")
 
 optimizer = optimizers.SGD(lr=0.0001, momentum=0.9, nesterov=True)
@@ -86,7 +86,6 @@ def predict():
     img_batch = np.expand_dims(img_array, axis=0)
     img_ppd = preprocess_input(img_batch)
     prediction = loaded_model.predict(img_ppd)
-    print("{:.2%}".format(prediction[0][0]))
     resulttext = "Cardbaord: " + "{:.2%}".format(prediction[0][0]) + "\n" + "Glass: " + "{:.2%}".format(prediction[0][1]) + "\n" + "Metal: " + "{:.2%}".format(prediction[0][2]) + "\n" + "Paper: " + "{:.2%}".format(prediction[0][3]) + "\n" + "Plastic: " + "{:.2%}".format(prediction[0][4]) + "\n" + "Trash: " + "{:.2%}".format(prediction[0][5])
     result.configure(text=resulttext)
 
@@ -114,10 +113,16 @@ label_result.place(x=675, y=0)
 result = Label(r_frame,text='Upload the image before prediction',font=('arial',15,'bold'))
 result.place(relx = 0.5, rely = 0.5, anchor=CENTER)
 
-button_home = Button(window, text=u'\u2302', font=('arial', 15, 'bold'), bg='light slate blue',
-                    command=wd_main).place(x=960, y=0)
-button_exit = Button(window, text="X", font=('arial', 14, 'bold'), bg='light slate blue',
-                     command=exit1).place(x=960, y=450)
+rightFrame = Frame(window)
+rightFrame.pack(side=RIGHT, anchor=N)
+rightFrame.configure(bg='light slate blue')
+
+button_home = Button(rightFrame, text=u'\u2302', font=('arial', 15, 'bold'), bg='light slate blue',
+                    command=wd_main,height = 25, width = 25)
+button_home.grid(column=1, row = 0, padx=5,pady=5)
+button_exit = Button(rightFrame, text="X", font=('arial', 14, 'bold'), bg='light slate blue',
+                     command=exit1,height = 25, width = 25)
+button_exit.grid(column=2, row = 0, padx=5,pady=5)
 
 
 window.mainloop()
