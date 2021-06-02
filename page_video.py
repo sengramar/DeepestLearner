@@ -2,6 +2,7 @@ from tkinter import *
 import tkinter as tk
 from PIL import Image, ImageTk
 import cv2
+from tkmacosx import Button
 
 window = Tk()
 app_width = 1000
@@ -19,12 +20,14 @@ window.title("Marine Garbage Classifier")
 
 l_frame = tk.Frame(window, width=450, height=450, bg='white')
 l_frame.place(x=30, y=40)
+l_frame.propagate(0)
 lmain = Label(l_frame)
 lmain.grid(row = 1,column = 1)
-lmain.pack()
+lmain.pack(anchor=CENTER)
 
 r_frame = tk.Frame(window, width=450, height=450, bg='white')
 r_frame.place(x=500, y=40)
+r_frame.propagate(0)
 
 #Camera frame work
 width, height = 400,400

@@ -1,5 +1,6 @@
 from tkinter import *
 import tkinter as tk
+from tkmacosx import Button
 from PIL import Image, ImageTk
 import cv2
 from tkinter import filedialog
@@ -23,7 +24,6 @@ optimizer = optimizers.SGD(lr=0.0001, momentum=0.9, nesterov=True)
 loaded_model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
 print('done')
 
-classes = ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash']
 
 window = Tk()
 app_width = 1000
@@ -91,19 +91,19 @@ def predict():
     result.configure(text=resulttext)
 
 
-btn_open = Button(l_frame, text='UPLOAD FILE', command=open_file).pack()
+btn_open = Button(l_frame, text='UPLOAD FILE', command=open_file).pack(side=BOTTOM,fill=X)
 
-btn_process = Button(l_frame,text='Predict', command=predict).pack()
+btn_process = Button(l_frame,text='Predict', command=predict).pack(side=BOTTOM,fill=X)
 
-button_pic = Button(window, text="LIVE PICTURE", fg='white', bg='light sky blue', relief=RIDGE,
+button_pic = Button(window, text="LIVE PICTURE", bg='light sky blue',fg='white', relief=RIDGE,
                     font=('arial', 12, 'bold'), command=wd_picture)
 button_pic.place(x=0, y=0)
 
-button_video = Button(window, text='LIVE VIDEO', fg='white', bg='steel blue', relief=RIDGE,
+button_video = Button(window, text='LIVE VIDEO', bg='steel blue', fg='white', relief=RIDGE,
                       font=('arial', 12, 'bold'), command=wd_video)
 button_video.place(x=130, y=0)
 
-button_upload = Button(window, text='UPLOAD FILE', fg='white', bg='light slate blue', relief='flat',
+button_upload = Button(window, text='UPLOAD FILE', bg='light slate blue', fg='white',relief='flat',
                       font=('arial', 12, 'bold'))
 button_upload.place(x=238, y=0)
 
@@ -111,7 +111,7 @@ label_result = Label(window, text="RESULT", fg="white", bg='light slate blue', r
                      font=("arial", 16, "bold"))
 label_result.place(x=675, y=0)
 
-result = Label(r_frame,text='',font=('arial',15,'bold'))
+result = Label(r_frame,text='Upload the image before prediction',font=('arial',15,'bold'))
 result.place(relx = 0.5, rely = 0.5, anchor=CENTER)
 
 button_home = Button(window, text=u'\u2302', font=('arial', 15, 'bold'), bg='light slate blue',

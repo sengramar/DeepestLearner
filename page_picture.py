@@ -1,5 +1,6 @@
 from tkinter import *
 import tkinter as tk
+from tkmacosx import Button
 from PIL import Image, ImageTk
 import cv2
 import os
@@ -42,7 +43,7 @@ l_frame = tk.Frame(window, width=450, height=450, bg='white')
 l_frame.place(x=30, y=40)
 l_frame.propagate(0)
 lmain = Label(l_frame)
-lmain.pack()
+lmain.pack(side=TOP)
 
 r_frame = tk.Frame(window, width=450, height=450, bg='white')
 r_frame.place(x=500, y=40)
@@ -76,7 +77,7 @@ cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
 def get_frame():
     if cap.isOpened():
         ret,frame = cap.read()
-        frame = cv2.resize(frame,(300,300))
+        frame = cv2.resize(frame,(350,350))
         if ret:
             return(ret,cv2.cvtColor(frame,cv2.COLOR_BGR2RGB))
         else:
@@ -87,12 +88,13 @@ def get_frame():
 def snapshot():
         ret, frame = get_frame()
         if ret:
-            frame = cv2.resize(frame, (300, 300))
+            frame = cv2.resize(frame, (350, 350))
             cv2.imwrite("frame.jpeg",cv2.cvtColor(frame, cv2.COLOR_RGB2BGR))
             showtakenpic()
             
 def showtakenpic():
     global img_path
+    cap.release()
     lmain.destroy()
     btn_snapshot.destroy()
     lmain2 = Label(l_frame)
@@ -101,8 +103,9 @@ def showtakenpic():
     lmain2.configure(image=shotimg)
     lmain2.pack()
     btn_refresh = Button(l_frame,text="Retake photo",width=50,command=refresh)
-    btn_refresh.pack(anchor=CENTER, expand=True)
-    btn_process = Button(l_frame,text='Predict', width=50, command=predict).pack()
+    btn_refresh.pack(side=BOTTOM, expand=True, fill=X)
+    btn_process = Button(l_frame,text='Predict', width=50, command=predict)
+    btn_process.pack(side=BOTTOM, expand=True, fill=X)
     img_path = "/Users/jiwonyou/Desktop/DL_CNN/A3/Clone/DeepestLearner/frame.jpeg"
     
 def refresh():
@@ -134,9 +137,9 @@ updateframe()
 
 #Snapshot button
 btn_snapshot=Button(l_frame, text="Snapshot", width=50, command=snapshot)
-btn_snapshot.pack(anchor=CENTER, expand=True)
+btn_snapshot.pack(side=BOTTOM, expand=True, fill=X)
 
-button_pic = Button(window, text="LIVE PICTURE", fg='white', bg='light sky blue', relief='flat',
+button_pic = Button(window, text="LIVE PICTURE", fg='white', bg='light sky blue', relief=RIDGE,
                     font=('arial', 12, 'bold'))
 button_pic.place(x=0, y=0)
 
@@ -154,7 +157,7 @@ label_result = Label(window, text="RESULT", fg="white", bg='light sky blue', rel
                      font=("arial", 16, "bold"))
 label_result.place(x=675, y=0)
 
-result = Label(r_frame,text='',font=('arial',15,'bold'))
+result = Label(r_frame,text='Take a Photo of Image before prediction',font=('arial',15,'bold'))
 result.place(relx = 0.5, rely = 0.5, anchor=CENTER)
 
 button_home = Button(window, text=u'\u2302', font=('arial', 15, 'bold'), bg='light sky blue',
