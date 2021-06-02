@@ -42,9 +42,12 @@ window.title("Marine Garbage Classifier")
 
 l_frame = tk.Frame(window, width=450, height=450, bg='white')
 l_frame.place(x=30, y=40)
+l_frame.propagate(0)
 
 r_frame = tk.Frame(window, width=450, height=450, bg='white')
 r_frame.place(x=500, y=40)
+r_frame.propagate(0)
+
 
 
 def exit1():
@@ -70,11 +73,11 @@ def open_file():
     global img
     global img_path
     l_frame.filename = filedialog.askopenfilename(title="upload file")
-    lab = Label(l_frame, text=l_frame.filename).pack()
+    lab = Label(l_frame, text=l_frame.filename).pack(fill=BOTH)
     file_img = Image.open(l_frame.filename)
-    resize_img = file_img.resize((400,400))
+    resize_img = file_img.resize((300,300))
     img = ImageTk.PhotoImage(resize_img)
-    img_lab = Label(l_frame, image=img).pack()
+    img_lab = Label(l_frame, image=img).pack(fill=BOTH)
     img_path = l_frame.filename
 
 def predict():   
@@ -83,9 +86,10 @@ def predict():
     img_batch = np.expand_dims(img_array, axis=0)
     img_ppd = preprocess_input(img_batch)
     prediction = loaded_model.predict(img_ppd)
-    print(prediction)
-    result.configure(text=prediction)
-    
+    print("{:.2%}".format(prediction[0][0]))
+    resulttext = "Cardbaord: " + "{:.2%}".format(prediction[0][0]) + "\n" + "Glass: " + "{:.2%}".format(prediction[0][1]) + "\n" + "Metal: " + "{:.2%}".format(prediction[0][2]) + "\n" + "Paper: " + "{:.2%}".format(prediction[0][3]) + "\n" + "Plastic: " + "{:.2%}".format(prediction[0][4]) + "\n" + "Trash: " + "{:.2%}".format(prediction[0][5])
+    result.configure(text=resulttext)
+
 
 btn_open = Button(l_frame, text='UPLOAD FILE', command=open_file).pack()
 
@@ -106,8 +110,9 @@ button_upload.place(x=238, y=0)
 label_result = Label(window, text="RESULT", fg="white", bg='light slate blue', relief='flat',
                      font=("arial", 16, "bold"))
 label_result.place(x=675, y=0)
-result = Label(window,text='initial',bg='light slate blue',font=('arial',15,'bold'))
-result.place(x=675, y=100)
+
+result = Label(r_frame,text='',font=('arial',15,'bold'))
+result.place(relx = 0.5, rely = 0.5, anchor=CENTER)
 
 button_home = Button(window, text=u'\u2302', font=('arial', 15, 'bold'), bg='light slate blue',
                     command=wd_main).place(x=960, y=0)
