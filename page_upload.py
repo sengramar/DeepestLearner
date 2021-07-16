@@ -59,11 +59,6 @@ def wd_main():
     import main
 
 
-def wd_video():
-    window.destroy()
-    import page_video
-
-
 def wd_picture():
     window.destroy()
     import page_picture
@@ -96,15 +91,12 @@ btn_process = Button(l_frame,text='Predict', command=predict).pack(side=BOTTOM,f
 
 button_pic = Button(window, text="LIVE PICTURE", bg='light sky blue',fg='white', relief=RIDGE,
                     font=('arial', 12, 'bold'), command=wd_picture)
-button_pic.place(x=0, y=0)
+button_pic.place(x=30, y=0)
 
-button_video = Button(window, text='LIVE VIDEO', bg='steel blue', fg='white', relief=RIDGE,
-                      font=('arial', 12, 'bold'), command=wd_video)
-button_video.place(x=130, y=0)
 
 button_upload = Button(window, text='UPLOAD FILE', bg='light slate blue', fg='white',relief='flat',
                       font=('arial', 12, 'bold'))
-button_upload.place(x=238, y=0)
+button_upload.place(x=170, y=0)
 
 label_result = Label(window, text="RESULT", fg="white", bg='light slate blue', relief='flat',
                      font=("arial", 16, "bold"))

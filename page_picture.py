@@ -58,11 +58,6 @@ def wd_main():
     import main
 
 
-def wd_video():
-    window.destroy()
-    import page_video
-
-
 def wd_upload():
     window.destroy()
     import page_upload
@@ -106,7 +101,7 @@ def showtakenpic():
     btn_refresh.pack(side=BOTTOM, expand=True, fill=X)
     btn_process = Button(l_frame,text='Predict', width=50, command=predict)
     btn_process.pack(side=BOTTOM, expand=True, fill=X)
-    img_path = "/Users/jiwonyou/Desktop/DL_CNN/A3/Clone/DeepestLearner/frame.jpeg"
+    img_path = "/Users/hyuny/Downloads/DeepestLearner-main/DeepestLearner-main/frame.jpeg"
     
 def refresh():
     window.destroy()
@@ -140,17 +135,12 @@ btn_snapshot.pack(side=BOTTOM, expand=True, fill=X)
 
 button_pic = Button(window, text="LIVE PICTURE", fg='white', bg='light sky blue', relief=RIDGE,
                     font=('arial', 12, 'bold'))
-button_pic.place(x=0, y=0)
-
-
-button_video = Button(window, text='LIVE VIDEO', fg='white', bg='steel blue', relief=RIDGE,
-                      font=('arial', 12, 'bold'), command=wd_video)
-button_video.place(x=130, y=0)
+button_pic.place(x=30, y=0)
 
 
 button_upload = Button(window, text='UPLOAD FILE', fg='white', bg='light slate blue', relief=RIDGE,
                       font=('arial', 12, 'bold'), command=wd_upload)
-button_upload.place(x=238, y=0)
+button_upload.place(x=170, y=0)
 
 label_result = Label(window, text="RESULT", fg="white", bg='light sky blue', relief='flat',
                      font=("arial", 16, "bold"))
